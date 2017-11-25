@@ -11,6 +11,7 @@ export class AppComponent {
   todos:any[] = [];
   todo:string = '';
   filterType = 'All';
+  isToggleAll = false;
 
   addTodo(){
     // console.log($event);
@@ -34,5 +35,13 @@ export class AppComponent {
   }
   filterTypeChange($event){
     this.filterType = $event;
+  }
+  toggleAllChange(){
+    this.todos.forEach(item=>{
+      item.done = this.isToggleAll;
+    })
+  }
+  destroy(data){
+    this.todos = this.todos.filter(item => item !== data);
   }
 }
