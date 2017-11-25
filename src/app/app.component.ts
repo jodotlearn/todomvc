@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { isNull } from 'util';
-import { HttpClientModule, HttpClient } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-root',
