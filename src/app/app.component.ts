@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { isNull } from 'util';
+import { HttpClientModule, HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-root',
@@ -12,6 +13,10 @@ export class AppComponent {
   todo:string = '';
   filterType = 'All';
   isToggleAll = false;
+
+  constructor(http: HttpClient){
+
+  }
 
   addTodo(){
     // console.log($event);
