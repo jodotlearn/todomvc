@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { isNull } from 'util';
-import { HttpClient } from '@angular/common/http';
+import { DataService } from './data.service';
 
 @Component({
   selector: 'app-root',
@@ -13,15 +13,14 @@ export class AppComponent implements OnInit {
   todo:string = '';
   filterType = 'All';
   isToggleAll = false;
-  apiUrl = 'http://localhost:3000/todos';
 
-  constructor(private http: HttpClient){
+  constructor(private dataSvc: DataService){
 
   }
 
   ngOnInit(){
     //取得資料
-    this.http.get<any[]>(this.apiUrl)
+    this.dataSvc.getTodos()
       .subscribe(data => {
         this.todos = data;
       });
@@ -40,7 +39,7 @@ export class AppComponent implements OnInit {
       // this.todos = this.todos.concat(newTodo);
       //way2
       // this.todos = [...this.todos, newTodo];//...是把陣列展開
-      this.http.post(this.apiUrl, newTodo)
+      this.dataSvc.addTodo(newTodo)
       .subscribe(data => {
         this.todos = this.todos.concat(data);
         this.todo = '';
@@ -67,14 +66,14 @@ export class AppComponent implements OnInit {
     })
   }
   destroy(data){
-    this.http.delete(`${this.apiUrl}/${data.id}`)
+    this.dataSvc.removeTodo(data)
       .subscribe(item => {
         this.todos = this.todos.filter(item => item.id !== data.id);
       });
   }
 
   updateTodo(data){
-    this.http.put(`${this.apiUrl}/${data.id}`,data)
+    this.dataSvc.updateTodo(data)
       .subscribe();
   }
 }
