@@ -9,11 +9,13 @@ import { isNull } from 'util';
 export class AppComponent {
   inputHint = 'What needs to be done?';
   todos:any[] = [];
+  todo:string = '';
 
-  addTodo(todo){
+  addTodo(){
     // console.log($event);
-    if (todo){
-      this.todos.push(todo);
+    if (this.todo){
+      this.todos.push(this.todo);
+      this.todo = '';
     }
   }
 }
