@@ -10,6 +10,7 @@ export class AppComponent {
   inputHint = 'What needs to be done?';
   todos:any[] = [];
   todo:string = '';
+  filterType = 'All';
 
   addTodo(){
     // console.log($event);
@@ -30,5 +31,8 @@ export class AppComponent {
 
   clearCompleted(){
     this.todos = this.todos.filter(item => !item.done);
+  }
+  filterTypeChange($event){
+    this.filterType = $event;
   }
 }

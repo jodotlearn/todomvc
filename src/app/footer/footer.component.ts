@@ -10,11 +10,18 @@ export class FooterComponent implements OnInit {
   isTooMore = false;
   @Output() onClearCompleted = new EventEmitter();
 
+  filterType = 'All';
+  @Output() filterTypeEvent = new EventEmitter<string>();
+
   constructor() { }
 
   ngOnInit() {
   }
 
+  changeFilterType(filterType){
+    this.filterType = filterType;
+    this.filterTypeEvent.emit(this.filterType);
+  }
 
   clearCompleted(){
     this.onClearCompleted.emit();

@@ -21,7 +21,7 @@
         <input class="edit" value="Create a TodoMVC template">
       </li>
       -->
-      <li *ngFor="let item of todos" [ngClass]="{'completed':item.done}">
+      <li *ngFor="let item of todos | filter:filterType" [ngClass]="{'completed':item.done}">
         <div class="view">
           <input class="toggle" type="checkbox" [(ngModel)]="item.done">
           <label [ngStyle]="{'color': item.done?'green':'red'}">{{ item.text | uppercase }}</label>
@@ -31,7 +31,7 @@
       </li>
     </ul>
   </section>
-  <app-footer [masterToDos]="todos" (onClearCompleted)="clearCompleted()"></app-footer>
+  <app-footer [masterToDos]="todos" (filterTypeEvent)="filterTypeChange($event)" (onClearCompleted)="clearCompleted()"></app-footer>
 </section>
 <footer class="info">
   <p>Double-click to edit a todo</p>
