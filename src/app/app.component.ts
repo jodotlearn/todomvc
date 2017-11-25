@@ -18,7 +18,12 @@ export class AppComponent {
         text: this.todo,
         done: false
       };
-      this.todos.push(newTodo);
+      // this.todos.push(newTodo);
+      //上述用 push 的方法不會觸發 ngOnChange，因為 reference 不會改變
+      //way1
+      // this.todos = this.todos.concat(newTodo);
+      //way2
+      this.todos = [...this.todos, newTodo];//...是把陣列展開
       this.todo = '';
     }
   }
