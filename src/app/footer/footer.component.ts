@@ -1,20 +1,25 @@
-import { Component, OnInit, Input, OnChanges } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-footer',
   templateUrl: './footer.component.html',
   styleUrls: ['./footer.component.css']
 })
-export class FooterComponent implements OnInit, OnChanges {
-  @Input('masterToDos') todos: any[];
+export class FooterComponent implements OnInit {
+  private _todos = [];
   isTooMore = false;
+
   constructor() { }
 
   ngOnInit() {
   }
 
-  ngOnChanges(){
-    this.isTooMore = this.todos.length > 5
+  @Input('masterToDos')
+  set todos(value){
+    this._todos = value;
+    this.isTooMore = this._todos.length > 5;
   }
-
+  get todos() {
+    return this._todos;
+  }
 }
