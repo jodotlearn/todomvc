@@ -23,7 +23,7 @@
       -->
       <li *ngFor="let item of todos | filter:filterType" [ngClass]="{'completed':item.done}">
         <div class="view">
-          <input class="toggle" type="checkbox" [(ngModel)]="item.done">
+          <input class="toggle" type="checkbox" [(ngModel)]="item.done" (ngModelChange)="updateTodo(item)">
           <label [ngStyle]="{'color': item.done?'green':'red'}">{{ item.text | uppercase }}</label>
           <button class="destroy" (click)="destroy(item)"></button>
         </div>
