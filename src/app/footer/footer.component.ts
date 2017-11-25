@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-footer',
@@ -8,10 +8,16 @@ import { Component, OnInit, Input } from '@angular/core';
 export class FooterComponent implements OnInit {
   private _todos = [];
   isTooMore = false;
+  @Output() onClearCompleted = new EventEmitter();
 
   constructor() { }
 
   ngOnInit() {
+  }
+
+
+  clearCompleted(){
+    this.onClearCompleted.emit();
   }
 
   @Input('masterToDos')

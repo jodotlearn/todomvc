@@ -31,7 +31,7 @@
       </li>
     </ul>
   </section>
-  <app-footer [masterToDos]="todos"></app-footer>
+  <app-footer [masterToDos]="todos" (onClearCompleted)="clearCompleted()"></app-footer>
 </section>
 <footer class="info">
   <p>Double-click to edit a todo</p>
